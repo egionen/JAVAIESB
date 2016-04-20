@@ -11,14 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author 14214290002
  */
-@WebServlet(urlPatterns = {"/BemVindo"})
-public class BemVindo extends HttpServlet {
+@WebServlet(urlPatterns = {"/Listar"})
+public class Listar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,23 +32,14 @@ public class BemVindo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-             
-            HttpSession session = request.getSession(false);
-            
-            if(session == null){
-                
-                response.sendRedirect("./index.html");
-            }
-            
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Bem Vindo</title>");            
+            out.println("<title>Servlet Listar</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Bem Vindo</h1>");
-            out.println("<a href='Cadastro'>Cadastro</a><br><br>");
-            out.println("<a href='Listar'>Listar</a>");
+            out.println("<h1>Servlet Listar at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
