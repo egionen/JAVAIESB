@@ -43,7 +43,8 @@ public class Cadastro extends HttpServlet {
         String endereco = request.getParameter("endereco");
         
         try(PrintWriter out = response.getWriter()){
-        
+            out.println("<h1>Cadastro</h1>");
+            out.println("<form method='POST' action='Insert'>");
             out.println("<label>Nome : <input type='text' name='nome'/></label><br><br>");
             out.println("<label>CPF : <input type='text' name='cpf'/></label><br><br>");    
             out.println("<label>Sexo : </label>");    
@@ -51,8 +52,11 @@ public class Cadastro extends HttpServlet {
             out.println("<label>Feminino <input type='radio' name='sexo' value='Feminino'/></label><br><br>");    
             out.println("<label>Data de Nascimento : <input type='text' name='nasc'/></label><br><br>");    
             out.println("<label>Endereço : <input type='text' name='endereco'></label><br><br>");    
+            out.println("<label>Medico : <input type='text' name='medico'/></label><br><br>");
+            out.println("<label>Setor : <input type='text' name='setor'/></label><br><br>");
+            out.println("<label>Diagnostico : <input type='text' name='diagnostico'/></label><br><br>");
             out.println("<input type='submit' value='Cadastrar'/>");    
-            out.println("<label>CPF : <input type='text' name='cpf'/></label><br><br>");    
+            out.println("</form>");
             
         }
     }

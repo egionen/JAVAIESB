@@ -48,7 +48,8 @@ public class BemVindo extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Bem Vindo</h1>");
-            out.println("<a href='./cadastro.html'>Cadastro</a>");
+            out.println("<a href='Cadastro'>Cadastro</a><br><br>");
+            out.println("<a href='Cadastro'>Listar</a>");
             out.println("</body>");
             out.println("</html>");
         }

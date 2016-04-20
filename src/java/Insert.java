@@ -41,14 +41,14 @@ public class Insert extends HttpServlet {
         Connection con = null;
         PrintWriter out = response.getWriter();
         
-        String nome         =   request.getParameter("name");
+        String nome         =   request.getParameter("nome");
         String cpf          =   request.getParameter("cpf");
         String sexo         =   request.getParameter("sexo");
         String nasc         =   request.getParameter("nasc");
         String endereco     =   request.getParameter("endereco");
         String hospital     =   request.getParameter("hospital");
         String medico       =   request.getParameter("medico");
-        String ala          =   request.getParameter("ala");
+        String setor          =   request.getParameter("setor");
         String data         =   request.getParameter("data");
         String diagnostico  =   request.getParameter("diagnostico");
         
@@ -59,7 +59,7 @@ public class Insert extends HttpServlet {
            
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaweb", "root", "iesb");
-            String insertStatement = "INSERT INTO pacientes (nome, cpf ,sexo,nasc,endereco,hospital,medico,ala,data,diagnostico)VALUES (?,?,?,?,?,?,?,?,?,?)";
+            String insertStatement = "INSERT INTO pacientes (nome, cpf ,sexo,nasc,endereco,hospital,medico,setor,data,diagnostico)VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement prepStmt = con.prepareStatement(insertStatement);
             prepStmt.setString(1, nome);
             prepStmt.setString(2, cpf);
@@ -68,15 +68,12 @@ public class Insert extends HttpServlet {
             prepStmt.setString(5, endereco);
             prepStmt.setString(6, hospital);
             prepStmt.setString(7, medico);
-            prepStmt.setString(8, ala);
+            prepStmt.setString(8, setor);
             prepStmt.setString(9, data);
             prepStmt.setString(10, diagnostico);
-            
-
             prepStmt.executeUpdate();
             prepStmt.close();
-            HttpSession session = request.getSession(true);
-            session.setAttribute("user", nome);
+            
           } catch(ClassNotFoundException e) {
       out.println("Couldn't load database driver: " + e.getMessage());
     }
