@@ -5,6 +5,7 @@
  */
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +17,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author 14214290002
  */
-@WebServlet(urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+@WebServlet(urlPatterns = {"/BemVindo"})
+public class BemVindo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,21 +32,26 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-
-        if(user.equals("admin") && pass.equals("admin")){
-        
-                HttpSession session = request.getSession(true);  
-                session.setAttribute(user, pass);
-                response.sendRedirect("BemVindo");  
-        }else{
+        try (PrintWriter out = response.getWriter()) {
+             
+            HttpSession session = request.getSession(false);
             
+            if(session == null){
+                
                 response.sendRedirect("./index.html");
+            }
             
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Bem Vindo</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Bem Vindo</h1>");
+            out.println("<a href='./cadastro.html'>Cadastro</a>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

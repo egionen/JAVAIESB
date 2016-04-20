@@ -42,40 +42,19 @@ public class Cadastro extends HttpServlet {
         String nasc = request.getParameter("nasc");
         String endereco = request.getParameter("endereco");
         
-        PrintWriter out = response.getWriter();
+        try(PrintWriter out = response.getWriter()){
         
-        
-        
-        
-        try{
+            out.println("<label>Nome : <input type='text' name='nome'/></label><br><br>");
+            out.println("<label>CPF : <input type='text' name='cpf'/></label><br><br>");    
+            out.println("<label>Sexo : </label>");    
+            out.println("<label>Masculino <input type='radio' name='sexo' value='Masculino'/></label>");    
+            out.println("<label>Feminino <input type='radio' name='sexo' value='Feminino'/></label><br><br>");    
+            out.println("<label>Data de Nascimento : <input type='text' name='nasc'/></label><br><br>");    
+            out.println("<label>Endereço : <input type='text' name='endereco'></label><br><br>");    
+            out.println("<input type='submit' value='Cadastrar'/>");    
+            out.println("<label>CPF : <input type='text' name='cpf'/></label><br><br>");    
             
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaweb", "root", "iesb");
-            String insertStatement = "INSERT INTO pacientes (nome, cpf ,sexo,nasc,endereco)VALUES (?,?,?,?,?)";
-            PreparedStatement prepStmt = con.prepareStatement(insertStatement);
-            prepStmt.setString(1, nome);
-            prepStmt.setString(2, cpf);
-            prepStmt.setString(3, sexo);
-            prepStmt.setString(4, nasc);
-            prepStmt.setString(5, endereco);
-            prepStmt.executeUpdate();
-            prepStmt.close();
-            HttpSession session = request.getSession(true);
-            session.setAttribute("user", nome);
-          
-          
-            
-            response.sendRedirect("Prontuario");
-            
-            
-            
-            
-        } catch(ClassNotFoundException e) {
-      out.println("Couldn't load database driver: " + e.getMessage());
-    }
-    catch(SQLException e) {
-      out.println("SQLException caught: " + e.getMessage());
-    }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
